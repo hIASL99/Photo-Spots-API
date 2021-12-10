@@ -56,7 +56,7 @@ namespace Photo_Spot_API.Controllers
             postedFile.SaveAs(path + fileName);
 
             //Send OK Response to Client.
-            return Request.CreateResponse(HttpStatusCode.OK, path + fileName);
+            return Request.CreateResponse(HttpStatusCode.OK, "https://photospot.matthiaswindisch.eu/Posts/"+ userId +"/"+ fileName);
         }
 
         //// PUT: api/Picture/5
