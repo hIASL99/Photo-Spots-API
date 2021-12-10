@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE [dbo].[spGetAllPhotos]
+
+AS
+BEGIN
+	SET NOCOUNT ON;
+	SELECT *
+	FROM Photos
+END
