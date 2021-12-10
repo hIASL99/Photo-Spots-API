@@ -70,5 +70,8 @@
     <Build Include="dbo\Tables\Photos.sql" />
     <Build Include="dbo\Stored Procedures\spGetAllPhotos.sql" />
     <Build Include="dbo\Stored Procedures\spPostNewPhoto.sql" />
+    <Build Include="dbo\Stored Procedures\spGetPhoto.sql" />
+    <Build Include="dbo\Stored Procedures\spChangePhoto.sql" />
+    <Build Include="dbo\Stored Procedures\spDeletePhoto.sql" />
   </ItemGroup>
 </Project>

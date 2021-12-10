@@ -3,6 +3,8 @@ using Photo_Spot_API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 
@@ -17,5 +19,41 @@ namespace Photo_Spot_API.Controllers
             PhotosData data = new PhotosData();
             return data.GetAllPhotos();
         }
+        // GET: api/photos/5
+        public PhotoModel Get(int id)
+        {
+            PhotosData data = new PhotosData();
+            return data.GetPhoto(id);
+        }
+
+        // POST: api/photos
+        public HttpResponseMessage Post([FromBody] PhotoModel photo)
+        {
+            PhotosData data = new PhotosData();
+
+            data.PostNewPhoto(photo);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        // PUT: api/photos/5
+        public HttpResponseMessage PUT([FromBody] PhotoModel photo)
+        {
+            PhotosData data = new PhotosData();
+
+            data.PutPhoto(photo);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        // DELETE: api/photos/5
+        public HttpResponseMessage Delete(int id)
+        {
+            PhotosData data = new PhotosData();
+
+            data.DeletePhoto(id);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+
+
     }
 }
