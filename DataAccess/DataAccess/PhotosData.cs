@@ -41,7 +41,11 @@ namespace DataAccess.DataAccess
             var p = new {   Photo = data.Photo,
                             Title = data.Title,
                             Description = data.Description,
-                            Location = data.Location
+                            Location = data.Location,
+                            LocationLongitude = data.LocationLongitude,
+                            LocationLatitude = data.LocationLatitude,
+                            LocationAltitude = data.LocationAltitude,
+                            UserId = data.UserId
             };
 
             sql.SaveData<dynamic>("dbo.spPostNewPhoto", p, "DefaultConnection");

@@ -1,4 +1,5 @@
 ﻿using DataAccess.DataAccess;
+using Microsoft.AspNet.Identity;
 using Photo_Spot_API.Models;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Photo_Spot_API.Controllers
         public HttpResponseMessage Post([FromBody] PhotoModel photo)
         {
             PhotosData data = new PhotosData();
-
+            photo.UserId = RequestContext.Principal.Identity.GetUserId();
             data.PostNewPhoto(photo);
             return Request.CreateResponse(HttpStatusCode.OK);
         }

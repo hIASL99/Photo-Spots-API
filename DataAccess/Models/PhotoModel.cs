@@ -15,5 +15,9 @@ namespace Photo_Spot_API.Models
         public string Description { get; set; }
         public string Location { get; set; }
         public DateTime CreatedDate { get; set; }
+        public Double LocationLongitude { get; set; }
+        public Double LocationLatitude { get; set; }
+        public Double LocationAltitude { get; set; }
+        public string UserName { get; set; }
     }
 }

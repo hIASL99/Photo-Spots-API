@@ -1,12 +1,17 @@
 ﻿CREATE PROCEDURE [dbo].[spPostNewPhoto]
-	@Photo nvarchar(100),
+	@UserId nvarchar(128),
+	@Photo nvarchar(250),
 	@Title NVARCHAR(100),
 	@Description nvarchar(MAX),
-	@Location NVARCHAR(100)
+	@Location NVARCHAR(100),
+	@LocationLongitude FLOAT,
+	@LocationLatitude FLOAT,
+	@LocationAltitude FLOAT
+	
 
 AS
 BEGIN
 	SET NOCOUNT ON
-	INSERT INTO Photos(Title, Photo, Description, Location) 
-	VALUES (@Title,@Photo,@Description,@Location)
+	INSERT INTO Photos(UserId, Title, Photo, Description, Location, LocationLongitude, LocationLatitude, LocationAltitude) 
+	VALUES (@UserId, @Title,@Photo,@Description,@Location,@LocationLongitude,@LocationLatitude,@LocationAltitude)
 END
