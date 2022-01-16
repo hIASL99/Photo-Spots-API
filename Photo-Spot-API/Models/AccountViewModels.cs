@@ -33,7 +33,7 @@ namespace Photo_Spot_API.Models
 
         public string LoginProvider { get; set; }
     }
-
+    
     public class UserLoginInfoViewModel
     {
         public string LoginProvider { get; set; }

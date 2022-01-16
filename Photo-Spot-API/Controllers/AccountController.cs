@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
+using DataAccess.DataAccess;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -51,19 +52,30 @@ namespace Photo_Spot_API.Controllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
-        // GET api/Account/UserInfo
+        // GET api/Account/UserName
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        [Route("UserInfo")]
-        public UserInfoViewModel GetUserInfo()
+        [Route("UserName")]
+        public string GetUserName()
         {
-            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
-
-            return new UserInfoViewModel
+            string userName = User.Identity.Name;
+            return userName;
+        }
+        // PUT api/Account/UserName
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("UserName")]
+        public IHttpActionResult PutUserName([FromBody] UsernameEdit newusername)
+        {
+            UserData data = new UserData();
+            try
             {
-                Email = User.Identity.GetUserName(),
-                HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
-            };
+                data.ChangeUsername(newusername.UserName, User.Identity.GetUserId());
+            }
+            catch(Exception e)
+            {
+                return InternalServerError(e);
+            }
+            
+            return Ok();
         }
 
         // POST api/Account/Logout
@@ -490,5 +502,9 @@ namespace Photo_Spot_API.Controllers
         }
 
         #endregion
+    }
+    public class UsernameEdit
+    {
+        public string UserName { get; set; }
     }
 }

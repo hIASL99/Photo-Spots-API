@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\PhotosData.cs" />
+    <Compile Include="DataAccess\UserData.cs" />
     <Compile Include="Internal\ISqlDataAccess.cs" />
     <Compile Include="Models\PhotoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

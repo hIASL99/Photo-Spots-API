@@ -20,6 +20,13 @@ namespace Photo_Spot_API.Controllers
             PhotosData data = new PhotosData();
             return data.GetAllPhotos();
         }
+        [Route("api/photos/myPhotos")]
+        public List<PhotoModel> GetAllFromUser()
+        {
+            string UserId = RequestContext.Principal.Identity.GetUserId();
+            PhotosData data = new PhotosData();
+            return data.GetAllMyPhotos(UserId);
+        }
         // GET: api/photos/5
         public PhotoModel Get(int id)
         {

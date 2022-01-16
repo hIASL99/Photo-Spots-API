@@ -21,6 +21,18 @@ namespace DataAccess.DataAccess
 
             return result;
         }
+
+        public List<PhotoModel> GetAllMyPhotos(string UserId)
+        {
+            SqlDataAccess sql = new SqlDataAccess();
+
+            var p = new { Id = UserId};
+
+            var result = sql.LoadData<PhotoModel, dynamic>("dbo.spGetAllMyPhotos", p, "DefaultConnection");
+
+            return result;
+        }
+
         public PhotoModel GetPhoto(int id)
         {
             SqlDataAccess sql = new SqlDataAccess();
