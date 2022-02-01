@@ -1,0 +1,6 @@
+﻿CREATE PROCEDURE [dbo].[spGetCategories]
+
+AS
+	SET NOCOUNT ON
+	SELECT * FROM Category
+RETURN 0

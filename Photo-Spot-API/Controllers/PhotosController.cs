@@ -18,28 +18,62 @@ namespace Photo_Spot_API.Controllers
         public List<PhotoModel> Get()
         {
             PhotosData data = new PhotosData();
-            return data.GetAllPhotos();
+            RatingData ratingData = new RatingData();
+            CategoryData categoryData = new CategoryData();
+            CommentData commentData = new CommentData();
+            var photos =  data.GetAllPhotos();
+            foreach(var p in photos)
+            {
+                p.Comments = commentData.GetCommentsForPost(p.Id);
+                p.Categories = categoryData.GetCategoriesForPost(p.Id).Select(tempresult => tempresult.Title ).ToList();
+                p.Rating = ratingData.GetRatingsForPost(p.Id);
+            }
+            return photos;
         }
         [Route("api/photos/myPhotos")]
         public List<PhotoModel> GetAllFromUser()
         {
             string UserId = RequestContext.Principal.Identity.GetUserId();
             PhotosData data = new PhotosData();
-            return data.GetAllMyPhotos(UserId);
+            RatingData ratingData = new RatingData();
+            CategoryData categoryData = new CategoryData();
+            CommentData commentData = new CommentData();
+            var photos = data.GetAllMyPhotos(UserId);
+
+            foreach (var p in photos)
+            {
+                p.Comments = commentData.GetCommentsForPost(p.Id);
+                p.Categories = categoryData.GetCategoriesForPost(p.Id).Select(tempresult => tempresult.Title).ToList();
+                p.Rating = ratingData.GetRatingsForPost(p.Id);
+            }
+            return photos;
+
         }
         // GET: api/photos/5
         public PhotoModel Get(int id)
         {
             PhotosData data = new PhotosData();
-            return data.GetPhoto(id);
+            RatingData ratingData = new RatingData();
+            CategoryData categoryData = new CategoryData();
+            CommentData commentData = new CommentData();
+            var photo = data.GetPhoto(id);
+
+            photo.Comments = commentData.GetCommentsForPost(photo.Id);
+            photo.Categories = categoryData.GetCategoriesForPost(photo.Id).Select(tempresult => tempresult.Title).ToList();
+            photo.Rating = ratingData.GetRatingsForPost(photo.Id);
+            
+            return photo;
+
         }
 
         // POST: api/photos
         public HttpResponseMessage Post([FromBody] PhotoModel photo)
         {
             PhotosData data = new PhotosData();
+            CategoryData catData = new CategoryData();
             photo.UserId = RequestContext.Principal.Identity.GetUserId();
-            data.PostNewPhoto(photo);
+            int id = data.PostNewPhoto(photo);
+            catData.AddCategories(photo.Categories, id);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -19,5 +20,9 @@ namespace Photo_Spot_API.Models
         public Double LocationLatitude { get; set; }
         public Double LocationAltitude { get; set; }
         public string UserName { get; set; }
+        public List<RatingModel> Rating { get; set; }
+        public List<string> Categories { get; set; }
+        public List<CommentModel> Comments { get; set; }
     }
+    
 }

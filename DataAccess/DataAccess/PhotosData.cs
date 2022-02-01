@@ -44,7 +44,7 @@ namespace DataAccess.DataAccess
             return result;
         }
 
-        public void PostNewPhoto(PhotoModel data)
+        public int PostNewPhoto(PhotoModel data)
         {
             SqlDataAccess sql = new SqlDataAccess();
 
@@ -60,7 +60,8 @@ namespace DataAccess.DataAccess
                             UserId = data.UserId
             };
 
-            sql.SaveData<dynamic>("dbo.spPostNewPhoto", p, "DefaultConnection");
+            var result = sql.LoadData<PhotoModel, dynamic>("dbo.spPostNewPhoto", p, "DefaultConnection");
+            return result.First().Id;
         }
         public void PutPhoto(PhotoModel data)
         {

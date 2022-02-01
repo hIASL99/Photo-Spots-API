@@ -46,10 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\CategoryData.cs" />
+    <Compile Include="DataAccess\CommentData.cs" />
     <Compile Include="DataAccess\PhotosData.cs" />
+    <Compile Include="DataAccess\RatingData.cs" />
     <Compile Include="DataAccess\UserData.cs" />
     <Compile Include="Internal\ISqlDataAccess.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\PhotoModel.cs" />
+    <Compile Include="Models\RatingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internal\SqlDataAccess.cs" />
   </ItemGroup>

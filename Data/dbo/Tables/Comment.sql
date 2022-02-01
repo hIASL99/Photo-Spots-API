@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Comment]
+(
+    Id INT NOT NULL IDENTITY PRIMARY KEY,
+    [PostId] INT NOT NULL, 
+    [UserId] NVARCHAR(256) NOT NULL,
+    [Text] NVARCHAR(MAX) NOT NULL
+   
+)

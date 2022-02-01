@@ -14,4 +14,5 @@ BEGIN
 	SET NOCOUNT ON
 	INSERT INTO Photos(UserId, Title, Photo, Description, Location, LocationLongitude, LocationLatitude, LocationAltitude) 
 	VALUES (@UserId, @Title,@Photo,@Description,@Location,@LocationLongitude,@LocationLatitude,@LocationAltitude)
+	SELECT Id FROM Photos WHERE Photo = @Photo AND UserId = @UserId AND Title = @Title
 END

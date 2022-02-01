@@ -52,6 +52,21 @@ namespace Photo_Spot_API.Controllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
+        // GET api/Account/UserInfo
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("UserInfo")]
+        public UserInfoViewModel GetUserInfo()
+        {
+            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+
+            return new UserInfoViewModel
+            {
+                Email = User.Identity.GetUserName(),
+                HasRegistered = externalLogin == null,
+                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+            };
+        }
+
         // GET api/Account/UserName
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserName")]
