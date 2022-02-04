@@ -8,6 +8,6 @@ AS
 BEGIN
 	SET NOCOUNT ON
 	UPDATE Photos
-	SET Title = @Title, Description = @Description, Location = @Description
+	SET Title = @Title, Description = @Description
 	WHERE Id = @Id;
 END

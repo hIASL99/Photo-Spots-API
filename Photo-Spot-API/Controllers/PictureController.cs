@@ -40,18 +40,23 @@ namespace Photo_Spot_API.Controllers
             string path = HttpContext.Current.Server.MapPath($"~/Posts/{userId}/");
             if (!Directory.Exists(path))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(path);      
             }
-            if (HttpContext.Current.Request.Files?.Count == 0)
+
+            if (HttpContext.Current.Request.Files.Count == 0)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "No File in request");
             }
-            //Fetch the File.
-            HttpPostedFile postedFile = HttpContext.Current.Request.Files[0];
 
+
+
+
+            //Fetch the File.
+            HttpPostedFile postedFile = HttpContext.Current.Request.Files[HttpContext.Current.Request.Files.AllKeys.First()];
+            
             //Fetch the File Name.
             string fileName = Path.GetFileName(postedFile.FileName);
-
+            
             //Save the File.
             postedFile.SaveAs(path + fileName);
 
